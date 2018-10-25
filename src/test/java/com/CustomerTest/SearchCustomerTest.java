@@ -1,6 +1,7 @@
 package com.CustomerTest;
 
 import Base.BaseCustomer;
+import Helpers.DataProviderClass;
 import Model.Customer;
 import io.qameta.allure.*;
 import io.restassured.http.ContentType;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static Helpers.Helper.getFirst;
+import static Helpers.Steps.GetStep;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.lessThan;
@@ -80,19 +82,19 @@ public class SearchCustomerTest extends BaseCustomer {
                 .contains(tuple(customer.getFirstname(), customer.getLastname(), customer.getPhone()));
     }
 
-//    @Test(dataProvider = "provideGetCustomerId", dataProviderClass = DataProviderClass.class)
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("New test example Three")
-//    @Story("This is a data provider story")
-//    public void getCustomersById(int id){
-//        //GetStep(String.format("Get specific customers by id: %d", id));
-//        given().
-//                contentType(JSON).
-//                when().
-//                get("/{id}", id).
-//                then().
-//                statusCode(HttpStatus.SC_OK);
-//    }
+    @Test(dataProvider = "provideGetCustomerId", dataProviderClass = DataProviderClass.class)
+    @Severity(SeverityLevel.NORMAL)
+    @Description("New test example Three")
+    @Story("This is a data provider story")
+    public void getCustomersById(int id){
+        GetStep(String.format("Get specific customers by id: %d", id));
+        given().
+                contentType(ContentType.JSON).
+                when().
+                get("/{id}", id).
+                then().
+                statusCode(HttpStatus.SC_OK);
+    }
 
     private List<Customer> getAllCustomersList() {
         return given().get().body().jsonPath().getList("", Customer.class);

@@ -25,7 +25,7 @@ public class CreateCustomerTest extends BaseCustomer {
 
     private Faker faker = new Faker();
 
-    @Test
+    @Test(description="Create a Customer")
     @Severity(SeverityLevel.NORMAL)
     @Description("Create a Customer")
     @Story("This is a story")
