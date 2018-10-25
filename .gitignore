@@ -1,0 +1,10 @@
+#IDEA Files
+/.idea
+/allure-results
+/build
+/out
+/target
+*.iml
+*.ipr
+*.log
+/.allure
